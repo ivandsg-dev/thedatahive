@@ -1,303 +1,287 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Data Hive - Consultoría de Datos</title>
+    <style>
+        /* Paleta de colores fríos y suaves, tipografía limpia */
+        :root {
+            --bg-color: #f4f7f6;
+            --container-bg: #ffffff;
+            --primary-color: #2c3e50;
+            --accent-color: #4a90e2;
+            --text-color: #4a5568;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navegación y Header */
+        header {
+            background-color: var(--container-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Logo minimalista generado con SVG (un panal geométrico de datos) */
+        .logo-svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Contenedor Principal */
+        main {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Estilo de Secciones */
+        section {
+            background-color: var(--container-bg);
+            padding: 3rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Sección Home */
+        .grid-home {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .home-image {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            object-fit: cover;
+        }
+
+        /* Sección Quiénes Somos (Perfil) */
+        .profile-container {
+            display: flex;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-image: url('https://media.licdn.com/dms/image/v2/D4D03AQG8PZPLCvafnw/profile-displayphoto-crop_800_800/B4DZmc8.ydJEAI-/0/1759274856058?e=1780531200&v=beta&t=arvpIbOAnBnKLqfvY4Syb7ohAs-NIsJhqfl6WpWutHY');
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+            border: 3px solid #ffffff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .profile-info h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-title {
+            font-weight: 500;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .linkedin-badge {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #0077b5;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .linkedin-badge:hover {
+            background-color: #005582;
+        }
+
+        /* Sección Dashboard (Looker Studio) */
+        .dashboard-wrapper {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .grid-home, .profile-container {
+                grid-template-columns: 1fr;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="es"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;The Data Hive - Consultoría de Datos&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Paleta de colores fríos y suaves, tipografía limpia */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>:root {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--bg-color: #f4f7f6;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--container-bg: #ffffff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--primary-color: #2c3e50;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--accent-color: #4a90e2;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--text-color: #4a5568;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--border-color: #e2e8f0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>* {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-sizing: border-box;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--bg-color);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-color);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.6;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Navegación y Header */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>header {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--container-bg);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 1px solid var(--border-color);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: sticky;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>z-index: 100;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.nav-container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1100px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 1.5rem 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.logo-area {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Logo minimalista generado con SVG (un panal geométrico de datos) */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.logo-svg {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.logo-text {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--primary-color);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: -0.5px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>nav ul {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>list-style: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>nav a {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-color);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.95rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: color 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>nav a:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--accent-color);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Contenedor Principal */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>main {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1100px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 2rem auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Estilo de Secciones */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>section {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--container-bg);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 3rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 3rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>h2 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--primary-color);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>p {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.05rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Sección Home */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.grid-home {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: 1fr 1fr;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 2.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.home-image {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 12px rgba(0,0,0,0.05);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>object-fit: cover;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Sección Quiénes Somos (Perfil) */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.profile-container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 2.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: flex-start;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.profile-avatar {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 150px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 150px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-image: url('https://media.licdn.com/dms/image/v2/D4D03AQG8PZPLCvafnw/profile-displayphoto-crop_800_800/B4DZmc8.ydJEAI-/0/1759274856058?e=1780531200&amp;v=beta&amp;t=arvpIbOAnBnKLqfvY4Syb7ohAs-NIsJhqfl6WpWutHY');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-size: cover;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-position: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>flex-shrink: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 3px solid #ffffff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 12px rgba(0,0,0,0.08);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.profile-info h3 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--primary-color);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.profile-title {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--accent-color);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.1rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.linkedin-badge {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0.5rem 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #0077b5;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: background-color 0.2s;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.linkedin-badge:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #005582;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Sección Dashboard (Looker Studio) */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.dashboard-wrapper {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding-top: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Footer */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>footer {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #94a3b8;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.85rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-top: 1px solid var(--border-color);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 4rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Responsive */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>@media (max-width: 768px) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>.nav-container {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>gap: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>.grid-home, .profile-container {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>grid-template-columns: 1fr;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>section {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>padding: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;header&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="nav-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="logo-area"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;polygon points="50,15 80,32.5 80,67.5 50,85 20,67.5 20,32.5" fill="none" stroke="#4a90e2" stroke-width="4"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;circle cx="50" cy="15" r="4" fill="#2c3e50"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;circle cx="80" cy="32.5" r="4" fill="#2c3e50"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;circle cx="80" cy="67.5" r="4" fill="#2c3e50"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;circle cx="50" cy="85" r="4" fill="#2c3e50"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;circle cx="20" cy="67.5" r="4" fill="#2c3e50"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;circle cx="20" cy="32.5" r="4" fill="#2c3e50"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;line x1="50" y1="15" x2="50" y2="85" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;line x1="20" y1="50" x2="80" y2="50" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="logo-text"&gt;The data hive&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;nav&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;&lt;a href="#home"&gt;Inicio&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;&lt;a href="#nosotros"&gt;Quiénes Somos&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;&lt;a href="#dashboard"&gt;Soluciones&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/nav&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;main&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="home"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid-home"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2&gt;Consultoría Inteligente para Proyectos de Datos&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;En &lt;strong&gt;The data hive&lt;/strong&gt; transformamos grandes volúmenes de información en decisiones estratégicas claras y accionables. Nos especializamos en el diseño de soluciones analíticas a medida y en la optimización de la infraestructura de datos de su negocio.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Nuestros pilares fundamentales incluyen la mejora continua de flujos de procesos de datos, la integración de fuentes heterogéneas y la creación de arquitecturas visuales que permiten entender el rendimiento de su organización en tiempo real.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img class="home-image" src="https://www.appinio.com/hubfs/What%20is%20Data%20Analysis%20Definition%20Tools%20Examples.jpg" alt="Análisis de Datos y Herramientas"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="nosotros"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2&gt;Quiénes Somos&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="profile-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="profile-avatar"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="profile-info"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3&gt;Iván de Souza Gago&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="profile-title"&gt;Especialista en Marketing Digital, Analítica de Datos e Instructor Profesional&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Consultor enfocado en liderar la transformación digital mediante la correcta implementación de arquitecturas de visualización de datos y la mejora de procesos empresariales. Con una amplia experiencia en la creación de métricas clave de negocio, capacitaciones y la gestión de proyectos dentro de ecosistemas tecnológicos ágiles.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Apasionado por conectar la tecnología con los objetivos comerciales, traduciendo requerimientos técnicos complejos en paneles interactivos simplificados que potencian el crecimiento organizacional.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="https://www.linkedin.com/in/ivan-de-souza-gago-0347b44/" target="_blank" class="linkedin-badge"&gt;Ver Perfil en LinkedIn&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="dashboard"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2&gt;Casos de Éxito y Soluciones Interactivas&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;A continuación, se presenta una muestra de nuestras capacidades de consolidación visual mediante un informe interactivo de Looker Studio (Data Studio). Este tipo de soluciones permite centralizar la información clave y optimizar las auditorías operativas diarias:&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="dashboard-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;iframe width="600" height="850" src="https://datastudio.google.com/embed/reporting/3cae56a1-8fe8-44c9-a56e-f1e24b1536b6/page/HhkaB" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"&gt;&lt;/iframe&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;&amp;copy; 2026 The data hive. Todos los derechos reservados. Soluciones Minimalistas de Consultoría de Datos.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="50,15 80,32.5 80,67.5 50,85 20,67.5 20,32.5" fill="none" stroke="#4a90e2" stroke-width="4"/>
+                    <circle cx="50" cy="15" r="4" fill="#2c3e50"/>
+                    <circle cx="80" cy="32.5" r="4" fill="#2c3e50"/>
+                    <circle cx="80" cy="67.5" r="4" fill="#2c3e50"/>
+                    <circle cx="50" cy="85" r="4" fill="#2c3e50"/>
+                    <circle cx="20" cy="67.5" r="4" fill="#2c3e50"/>
+                    <circle cx="20" cy="32.5" r="4" fill="#2c3e50"/>
+                    <line x1="50" y1="15" x2="50" y2="85" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4"/>
+                    <line x1="20" y1="50" x2="80" y2="50" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4"/>
+                </svg>
+                <span class="logo-text">The data hive</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#nosotros">Quiénes Somos</a></li>
+                    <li><a href="#dashboard">Soluciones</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="grid-home">
+                <div>
+                    <h2>Consultoría Inteligente para Proyectos de Datos</h2>
+                    <p>En <strong>The data hive</strong> transformamos grandes volúmenes de información en decisiones estratégicas claras y accionables. Nos especializamos en el diseño de soluciones analíticas a medida y en la optimización de la infraestructura de datos de su negocio.</p>
+                    <p>Nuestros pilares fundamentales incluyen la mejora continua de flujos de procesos de datos, la integración de fuentes heterogéneas y la creación de arquitecturas visuales que permiten entender el rendimiento de su organización en tiempo real.</p>
+                </div>
+                <div>
+                    <img class="home-image" src="https://www.appinio.com/hubfs/What%20is%20Data%20Analysis%20Definition%20Tools%20Examples.jpg" alt="Análisis de Datos y Herramientas">
+                </div>
+            </div>
+        </section>
+
+        <section id="nosotros">
+            <h2>Quiénes Somos</h2>
+            <div class="profile-container">
+                <div class="profile-avatar"></div>
+                <div class="profile-info">
+                    <h3>Iván de Souza Gago</h3>
+                    <p class="profile-title">Especialista en Marketing Digital, Analítica de Datos e Instructor Profesional</p>
+                    <p>Consultor enfocado en liderar la transformación digital mediante la correcta implementación de arquitecturas de visualización de datos y la mejora de procesos empresariales. Con una amplia experiencia en la creación de métricas clave de negocio, capacitaciones y la gestión de proyectos dentro de ecosistemas tecnológicos ágiles.</p>
+                    <p>Apasionado por conectar la tecnología con los objetivos comerciales, traduciendo requerimientos técnicos complejos en paneles interactivos simplificados que potencian el crecimiento organizacional.</p>
+                    <a href="https://www.linkedin.com/in/ivan-de-souza-gago-0347b44/" target="_blank" class="linkedin-badge">Ver Perfil en LinkedIn</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="dashboard">
+            <h2>Casos de Éxito y Soluciones Interactivas</h2>
+            <p>A continuación, se presenta una muestra de nuestras capacidades de consolidación visual mediante un informe interactivo de Looker Studio (Data Studio). Este tipo de soluciones permite centralizar la información clave y optimizar las auditorías operativas diarias:</p>
+            
+            <div class="dashboard-wrapper">
+                <iframe width="600" height="850" src="https://datastudio.google.com/embed/reporting/3cae56a1-8fe8-44c9-a56e-f1e24b1536b6/page/HhkaB" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 The data hive. Todos los derechos reservados. Soluciones Minimalistas de Consultoría de Datos.</p>
+    </footer>
+
 </body>
 </html>
